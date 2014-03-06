@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true">
+	<jmxConfigurator />
+
+	<contextName>Configution Keeper Manager</contextName>
+	<property name="LOGS_HOME" value="./logs" />
+	<property name="LOGS_FILENAME" value="ck-manager" />
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator" />
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>%d %contextName [%t] %-5level %logger{36} - %msg %n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="debug_file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS_HOME}/${LOGS_FILENAME}-debug.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${LOGS_HOME}/${LOGS_FILENAME}-debug.log.%i.bak
+			</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>12</MaxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>100MB</MaxFileSize>
+		</triggeringPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="info_file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS_HOME}/${LOGS_FILENAME}-info.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${LOGS_HOME}/${LOGS_FILENAME}-info.log.%i.bak
+			</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>12</MaxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>100MB</MaxFileSize>
+		</triggeringPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="warn_file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS_HOME}/${LOGS_FILENAME}-warn.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${LOGS_HOME}/${LOGS_FILENAME}-warn.log.%i.bak
+			</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>12</MaxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>100MB</MaxFileSize>
+		</triggeringPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<appender name="error_file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS_HOME}/${LOGS_FILENAME}-error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>${LOGS_HOME}/${LOGS_FILENAME}-error.log.%i.bak
+			</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>12</MaxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>100MB</MaxFileSize>
+		</triggeringPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</layout>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<logger name="com.qianwang365.confkeeper" level="DEBUG" />
+
+	<root level="INFO">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="debug_file" />
+		<appender-ref ref="info_file" />
+		<appender-ref ref="warn_file" />
+		<appender-ref ref="error_file" />
+	</root>
+</configuration> 
