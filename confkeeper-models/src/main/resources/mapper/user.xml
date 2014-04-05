@@ -10,10 +10,16 @@
 		<result property="passwd" column="passwd" />
 		<result property="creationTime" column="creation_time" />
 	</resultMap>
+<<<<<<< HEAD
 
 	<select id="getByUserName" resultMap="userMap">
 		select * from sys_user
 		where username = #{uname} and passwd = #{passwd}
+=======
+	
+	<select id="getByUserName" resultMap="userMap">
+		select * from sys_user where username = #{uname} and passwd = #{passwd}
+>>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 	</select>
 
 	<!-- basedao implement methods -->
@@ -26,9 +32,16 @@
 		user_id = #{id}
 	</select>
 
+<<<<<<< HEAD
 	<insert id="add">
 		<selectKey resultType="long" keyProperty="id" order="AFTER" databaseId="">
 			SELECT LAST_INSERT_ID()
+=======
+	<insert id="add" parameterType="UserEntity">
+		<selectKey statementType="STATEMENT" resultType="long"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID() as id
+>>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 		</selectKey>
 		insert into sys_user(username,
 		passwd)

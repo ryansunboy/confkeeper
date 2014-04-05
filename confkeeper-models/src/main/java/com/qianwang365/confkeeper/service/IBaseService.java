@@ -43,8 +43,11 @@ public interface IBaseService<E, PK> {
 	 */
 	Pagination<E> getEntities(final int idx, final int size, final E e);
 
+<<<<<<< HEAD
 	Pagination<E> getEntities(final E e);
 
+=======
+>>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 	/**
 	 * @description 详细说明
 	 * @param id

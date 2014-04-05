@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianwang365.confkeeper.dao.mapper.EndParamMapper">
+
+	<resultMap type="EndParamEntity" id="eparamMap">
+		<id property="id" column="param_id" />
+		<result property="type" column="cp_type" />
+		<result property="key" column="cp_key" />
+		<result property="value" column="cp_value" />
+	</resultMap>
+
+	<resultMap type="EndParamEntity" id="eparamExMap" extends="eparamMap">
+		<association property="endpoint" column="param_id"
+			select="com.qianwang365.confkeeper.dao.mapper.EndPointMapper.getByEndParamId" />
+	</resultMap>
+	
+	<delete id="removeByEPID">
+		delete from sys_endpoint_param
+		where ep_id = #{id}
+	</delete>
+
+	<select id="getEntitiesByEPID" resultMap="eparamMap">
+		select epp.* from sys_app a
+		join sys_app_endpoint ep on a.app_id = ep.app_id
+		join sys_endpoint_param epp on ep.ep_id = epp.ep_id
+		where ep.ep_id = #{id} order by epp.cp_type
+	</select>
+
+	<select id="getAppVersionById" resultMap="eparamMap">
+		select epp.* from
+		sys_app a
+		join sys_app_endpoint ep on a.app_id = ep.app_id
+		join
+		sys_endpoint_param epp on ep.ep_id = epp.ep_id
+		where ep.ep_ver =
+		#{version} and a.app_name=#{appName}
+	</select>
+
+	<!-- basedao implement methods -->
+	<select id="getEntities" resultMap="eparamExMap">
+		select * from
+		sys_endpoint_param
+	</select>
+
+	<select id="getEntity" resultMap="eparamExMap">
+		select * from
+		sys_endpoint_param where
+		param_id = #{id}
+	</select>
+
+	<insert id="add" parameterType="EndParamEntity">
+		<selectKey resultType="long" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		insert into
+		sys_endpoint_param(ep_id,cp_type,cp_key,cp_value)
+		values(#{endpoint.id},#{type},#{key},
+		#{value})
+	</insert>
+
+	<insert id="batchAdd">
+		insert into sys_endpoint_param(ep_id,cp_type,cp_key,cp_value)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.endpoint.id},#{item.type},#{item.key},
+			#{item.value})
+		</foreach>
+	</insert>
+
+	<delete id="remove">
+		delete from sys_endpoint_param
+		where param_id = #{id}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from sys_endpoint_param
+		where
+		<foreach collection="array" item="item" index="index"
+			separator="or">
+			#{item}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="EndParamEntity">
+		update sys_endpoint_param
+		<set>
+			<if test="endpoint!=null">
+				ep_id=#{endpoint.id},
+			</if>
+			<if test="type!=null">
+				cp_type=#{type},
+			</if>
+			<if test="key!=null">
+				cp_key=#{key},
+			</if>
+			<if test="value!=null">
+				cp_value=#{value},
+			</if>
+		</set>
+		where param_id = #{id}
+	</update>
+
+</mapper>

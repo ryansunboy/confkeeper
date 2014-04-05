@@ -3,6 +3,10 @@
  */
 package com.qianwang365.confkeeper.dao.interceptor.parser;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 /**
  * @author Yate
  * @date Nov 28, 2013
@@ -42,8 +46,12 @@ public class SQLParser {
 		Location l = new Location();
 		for (;;) {
 			char c = charAt(sql, ++pos);
+<<<<<<< HEAD
 			if ((c == token.charAt(0) || c == token.charAt(0) + 32)
 					&& pos - 1 == make) {
+=======
+			if (c == token.charAt(0) && pos - 1 == make) {
+>>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 				l.s = pos;
 			}
 			if (c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == '\f'

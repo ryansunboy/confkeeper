@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<bean name="redisPool"
+		class="com.qianwang365.confkeeper.controller.cache.IoRedisPool"
+		destroy-method="close">
+		<constructor-arg type="java.lang.String" value="${redis_host}" />
+		<constructor-arg type="int" value="${redis_port}" />
+		<constructor-arg type="int" value="${redis_max_active}" />
+		<constructor-arg type="int" value="${redis_max_idle}" />
+		<constructor-arg type="int" value="${redis_min_idle}" />
+	</bean>
+	
+	<bean name="amqpp"
+		class="com.qianwang365.confkeeper.controller.amqp.JSONProducer">
+		<constructor-arg type="java.lang.String" value="${amqp.exchange}" />
+		<constructor-arg type="java.lang.String" value="${amqp.exchange}" />
+		<constructor-arg type="java.lang.String" value="${amqp.server}" />
+		<constructor-arg type="int" value="${amqp.port}" />
+	</bean>
+
+</beans>
