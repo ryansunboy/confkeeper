@@ -91,7 +91,7 @@ public class AppController extends BaseController {
 
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET })
 	public String modify(Model model, @PathVariable long id) {
-		model.addAttribute("e", this.service.getEntity(id));
+//		model.addAttribute("e", this.service.getEntity(id));
 		return "app/info";
 	}
 

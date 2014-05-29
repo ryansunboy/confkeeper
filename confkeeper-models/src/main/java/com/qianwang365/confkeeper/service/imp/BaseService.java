@@ -30,10 +30,6 @@ public abstract class BaseService<E, PK> implements IBaseService<E, PK> {
 	 */
 	public void add(E e) {
 		this.getMapperDao().add(e);
-<<<<<<< HEAD
-		System.out.println(e);
-=======
->>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 	}
 
 	/*
@@ -66,7 +62,6 @@ public abstract class BaseService<E, PK> implements IBaseService<E, PK> {
 		return result;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public Pagination<E> getEntities(E e) {
 		Pagination<E> result = new Pagination<E>(1, Integer.MAX_VALUE);
@@ -74,8 +69,6 @@ public abstract class BaseService<E, PK> implements IBaseService<E, PK> {
 		return result;
 	}
 
-=======
->>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 	/*
 	 * (non-Javadoc)
 	 * 

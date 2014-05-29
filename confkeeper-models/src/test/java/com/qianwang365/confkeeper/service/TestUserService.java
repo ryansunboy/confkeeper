@@ -22,11 +22,6 @@ import com.qianwang365.confkeeper.model.UserEntity;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class TestUserService extends
 		AbstractTransactionalJUnit4SpringContextTests {
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 	@Resource
 	private IUserService userService;
 
@@ -36,9 +31,6 @@ public class TestUserService extends
 		e.setUserName("test");
 		e.setPasswd("testdao");
 		this.userService.add(e);
-<<<<<<< HEAD
 		System.out.println(e.getId());
-=======
->>>>>>> 0ed04841feb04ddb0dfb8f44d2a00f68437ce55b
 	}
 }
